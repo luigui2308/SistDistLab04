@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) -->
+<serviceGroup>
+    <service name="ProfesorService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="universidad.ProfesorServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">universidad.ProfesorServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="findProfesor" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://universidad">
+            <actionMapping>urn:findProfesor</actionMapping>
+            <outputActionMapping>urn:findProfesorResponse</outputActionMapping>
+        </operation>
+        <operation name="findAll" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://universidad">
+            <actionMapping>urn:findAll</actionMapping>
+            <outputActionMapping>urn:findAllResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

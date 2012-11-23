@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://universidad" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://universidad" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://universidad">
+            <xs:element name="findProfesor">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="args0" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findProfesorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findAll">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="findAllResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ns:ArrayOfString"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="ArrayOfString">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="array" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findAllRequest">
+    <wsdl:part name="parameters" element="ns:findAll">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findProfesorRequest">
+    <wsdl:part name="parameters" element="ns:findProfesor">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findAllResponse">
+    <wsdl:part name="parameters" element="ns:findAllResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findProfesorResponse">
+    <wsdl:part name="parameters" element="ns:findProfesorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProfesorServicePortType">
+    <wsdl:operation name="findProfesor">
+      <wsdl:input message="ns:findProfesorRequest" wsaw:Action="urn:findProfesor">
+    </wsdl:input>
+      <wsdl:output message="ns:findProfesorResponse" wsaw:Action="urn:findProfesorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <wsdl:input message="ns:findAllRequest" wsaw:Action="urn:findAll">
+    </wsdl:input>
+      <wsdl:output message="ns:findAllResponse" wsaw:Action="urn:findAllResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProfesorServiceHttpBinding" type="ns:ProfesorServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="findProfesor">
+      <http:operation location="findProfesor"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <http:operation location="findAll"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProfesorServiceSoap12Binding" type="ns:ProfesorServicePortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findProfesor">
+      <soap12:operation soapAction="urn:findProfesor" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <soap12:operation soapAction="urn:findAll" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProfesorServiceSoap11Binding" type="ns:ProfesorServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findProfesor">
+      <soap:operation soapAction="urn:findProfesor" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAll">
+      <soap:operation soapAction="urn:findAll" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProfesorService">
+    <wsdl:port name="ProfesorServiceHttpEndpoint" binding="ns:ProfesorServiceHttpBinding">
+      <http:address location="http://localhost:8080/axis2/services/ProfesorService"/>
+    </wsdl:port>
+    <wsdl:port name="ProfesorServiceHttpSoap11Endpoint" binding="ns:ProfesorServiceSoap11Binding">
+      <soap:address location="http://localhost:8080/axis2/services/ProfesorService"/>
+    </wsdl:port>
+    <wsdl:port name="ProfesorServiceHttpSoap12Endpoint" binding="ns:ProfesorServiceSoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2/services/ProfesorService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
